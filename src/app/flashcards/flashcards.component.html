@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4">
+		<select class="form-control" [(ngModel)]="selectedCategory" (change)="onCategorySelected()" >
+			<option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
+		</select>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-body"><b>Question:</b><br/>{{fc.question}}</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<div style="min-height: 10em;" class="panel panel-primary">
+		  <div class="panel-body"><b>Answer:</b><br/>{{fc.answer}}</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+	</div>
+</div>
