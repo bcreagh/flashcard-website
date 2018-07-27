@@ -3,7 +3,7 @@
 	</div>
 	<div class="col-md-4">
 		<select class="form-control" [(ngModel)]="selectedCategory" (change)="onCategorySelected()" >
-			<option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
+			<option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
 		</select>
 	</div>
 	<div class="col-md-4">

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Flashcard } from '../domain/flashcard';
+import { CategoryService } from '../category.service';
+import { Category } from '../domain/category';
 
 @Component({
 	selector: 'app-flashcards',
@@ -8,16 +10,22 @@ import { Flashcard } from '../domain/flashcard';
 })
 export class FlashcardsComponent implements OnInit {
 
-	constructor() { }
+	constructor(private categoryService: CategoryService) { }
+	
 	selectedCategory = "None Selected";
 	fc: Flashcard = {
 	  question: "What is your favourite colour?",
 	  answer: "I don't know that"
+	};
+
+	categories: Category[];
+	
+	getCategories(): void {
+		this.categoryService.getCategories().subscribe(categories => this.categories = categories);
 	}
 
-	categories = ["None Selected", "Java", "C", "C#"];
-
 	ngOnInit() {
+		this.getCategories();
 	}
 	
 	onCategorySelected() {
