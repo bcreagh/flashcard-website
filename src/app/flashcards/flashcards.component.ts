@@ -13,8 +13,9 @@ export class FlashcardsComponent implements OnInit {
 
 	constructor(private categoryService: CategoryService, private flashcardService: FlashcardService) { }
 	
-	selectedCategory = new Category({ id: 0, name: "Select a category... " });	
+	selectedCategory: Category = new Category({ id: 0, name: "Select a category... " });	
 	currentFlashcardPosition: number = 1;
+	numberOfCardsInCurrentCategory: number = 0;
 	fc: Flashcard = {
 	  question: "What is your favourite colour?",
 	  answer: "I don't know that"
@@ -32,12 +33,20 @@ export class FlashcardsComponent implements OnInit {
 	onCategorySelected() {
 		this.currentFlashcardPosition = 1;
 		this.getFlashcard(this.selectedCategory.id, 1);
+		this.countNumberOfFlashcardsInCurrentCategory();
 	}
 	
 	getFlashcard(categoryId: number, cardPosition: number) {
 		this.flashcardService.getNthFlashcardInCategory(categoryId, cardPosition)
 			.subscribe(result => {
 				this.fc = result;
+			});
+	}
+	
+	countNumberOfFlashcardsInCurrentCategory() {
+		this.categoryService.getNumberOfFlashcardsInCategory(this.selectedCategory.id)
+			.subscribe(integerResult => {
+				this.numberOfCardsInCurrentCategory = integerResult.result;
 			});
 	}
 }
