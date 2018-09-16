@@ -32,6 +32,7 @@ export class FlashcardsComponent implements OnInit {
 	
 	onCategorySelected() {
 		this.currentFlashcardPosition = 1;
+		this.numberOfCardsInCurrentCategory = 1;
 		this.getFlashcard(this.selectedCategory.id, 1);
 		this.countNumberOfFlashcardsInCurrentCategory();
 	}
@@ -48,5 +49,12 @@ export class FlashcardsComponent implements OnInit {
 			.subscribe(integerResult => {
 				this.numberOfCardsInCurrentCategory = integerResult.result;
 			});
+	}
+	
+	getNextFlashcard() {
+		if(this.currentFlashcardPosition < this.numberOfCardsInCurrentCategory) {
+			this.currentFlashcardPosition += 1;
+			this.getFlashcard(this.selectedCategory.id, this.currentFlashcardPosition);
+		}
 	}
 }
