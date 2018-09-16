@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Flashcard } from '../domain/flashcard';
 import { CategoryService } from '../category.service';
 import { Category } from '../domain/category';
+import { FlashcardService } from '../services/flashcard.service';
 
 @Component({
 	selector: 'app-flashcards',
@@ -10,14 +11,14 @@ import { Category } from '../domain/category';
 })
 export class FlashcardsComponent implements OnInit {
 
-	constructor(private categoryService: CategoryService) { }
+	constructor(private categoryService: CategoryService, private flashcardService: FlashcardService) { }
 	
-	selectedCategory = "None Selected";
+	selectedCategory = new Category({ id: 0, name: "Select a category... " });	
+	currentFlashcardPosition: number = 1;
 	fc: Flashcard = {
 	  question: "What is your favourite colour?",
 	  answer: "I don't know that"
 	};
-
 	categories: Category[];
 	
 	getCategories(): void {
@@ -29,7 +30,14 @@ export class FlashcardsComponent implements OnInit {
 	}
 	
 	onCategorySelected() {
-		this.fc.question = 'What is your favourite language?';
-		this.fc.answer = this.selectedCategory;
+		this.currentFlashcardPosition = 1;
+		this.getFlashcard(this.selectedCategory.id, 1);
+	}
+	
+	getFlashcard(categoryId: number, cardPosition: number) {
+		this.flashcardService.getNthFlashcardInCategory(categoryId, cardPosition)
+			.subscribe(result => {
+				this.fc = result;
+			});
 	}
 }
