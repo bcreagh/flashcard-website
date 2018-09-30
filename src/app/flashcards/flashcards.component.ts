@@ -70,4 +70,14 @@ export class FlashcardsComponent implements OnInit {
 			this.getFlashcard(this.selectedCategory.id, this.currentFlashcardPosition);
 		}
 	}
+
+	getRandomFlashcard() {
+		this.currentFlashcardPosition = this.getRandomInt(this.numberOfCardsInCurrentCategory);
+		this.getFlashcard(this.selectedCategory.id, this.currentFlashcardPosition);
+	}
+
+	getRandomInt(max: number) {
+		return Math.floor(Math.random() * (max)) + 1;
+	}
+
 }
