@@ -23,7 +23,13 @@ export class FlashcardsComponent implements OnInit {
 	categories: Category[];
 	
 	getCategories(): void {
-		this.categoryService.getCategories().subscribe(categories => this.categories = categories);
+		this.categoryService.getCategories().subscribe(categories => {
+			this.categories = categories;
+			if (this.categories.length > 0) {
+				this.selectedCategory = categories[0];
+				this.onCategorySelected();
+			}
+		});
 	}
 
 	ngOnInit() {
@@ -54,6 +60,13 @@ export class FlashcardsComponent implements OnInit {
 	getNextFlashcard() {
 		if(this.currentFlashcardPosition < this.numberOfCardsInCurrentCategory) {
 			this.currentFlashcardPosition += 1;
+			this.getFlashcard(this.selectedCategory.id, this.currentFlashcardPosition);
+		}
+	}
+
+	getPreviousFlashcard() {
+		if(this.currentFlashcardPosition > 1) {
+			this.currentFlashcardPosition -= 1;
 			this.getFlashcard(this.selectedCategory.id, this.currentFlashcardPosition);
 		}
 	}
