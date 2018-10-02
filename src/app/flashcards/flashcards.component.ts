@@ -3,6 +3,8 @@ import { Flashcard } from '../domain/flashcard';
 import { CategoryService } from '../category.service';
 import { Category } from '../domain/category';
 import { FlashcardService } from '../services/flashcard.service';
+import {MatDialog} from '@angular/material';
+import { CreateFlashcardDialogComponent } from './create-flashcard-dialog/create-flashcard-dialog.component';
 
 @Component({
 	selector: 'app-flashcards',
@@ -11,7 +13,7 @@ import { FlashcardService } from '../services/flashcard.service';
 })
 export class FlashcardsComponent implements OnInit {
 
-	constructor(private categoryService: CategoryService, private flashcardService: FlashcardService) { }
+	constructor(private categoryService: CategoryService, private flashcardService: FlashcardService, public dialog: MatDialog) { }
 	
 	selectedCategory: Category = new Category({ id: 0, name: "Select a category... " });	
 	currentFlashcardPosition: number = 1;
@@ -78,6 +80,13 @@ export class FlashcardsComponent implements OnInit {
 
 	getRandomInt(max: number) {
 		return Math.floor(Math.random() * (max)) + 1;
+	}
+
+	openDialog() {
+		let dialogRef = this.dialog.open(CreateFlashcardDialogComponent, {
+			width: '500px',
+			data: { categoryId: this.selectedCategory.id }
+		});
 	}
 
 }

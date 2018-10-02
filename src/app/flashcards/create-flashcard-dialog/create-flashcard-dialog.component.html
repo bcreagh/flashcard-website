@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>New Flashcard </h1>
+<div mat-dialog-content>
+  <form [formGroup]="newFlashcardForm">
+    <label>
+      Question:
+      <input type="text" formControlName="question" />
+    </label>
+    <label>
+      Answer:
+      <input type="text" formControlName="answer" />
+    </label>
+  </form>
+</div>
+<div mat-dialog-footer>
+  <button type="button" class="btn" (click)="saveFlashcard()">Create</button>
+</div>

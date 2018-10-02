@@ -12,4 +12,8 @@ export class FlashcardService {
   getNthFlashcardInCategory(categoryId: number, cardPosition: number) {
 	  return this.http.get<Flashcard>("http://localhost:8080/Flashcards/categories/cards?categoryId=" + categoryId + "&cardPosition=" + cardPosition);
   }
+
+  createFlashCard(flashcard: Flashcard, categoryId: number) {
+    return this.http.post("http://localhost:8080/Flashcards/cards?categoryId=" + categoryId, JSON.stringify(flashcard));
+  }
 }
