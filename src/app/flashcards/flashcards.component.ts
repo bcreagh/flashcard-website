@@ -5,6 +5,7 @@ import { Category } from '../domain/category';
 import { FlashcardService } from '../services/flashcard.service';
 import {MatDialog} from '@angular/material';
 import { CreateFlashcardDialogComponent } from './create-flashcard-dialog/create-flashcard-dialog.component';
+import { CreateCategoryDialogComponent } from './create-category-dialog/create-category-dialog.component';
 
 @Component({
 	selector: 'app-flashcards',
@@ -82,10 +83,16 @@ export class FlashcardsComponent implements OnInit {
 		return Math.floor(Math.random() * (max)) + 1;
 	}
 
-	openDialog() {
+	openFlashcardDialog() {
 		let dialogRef = this.dialog.open(CreateFlashcardDialogComponent, {
 			width: '500px',
 			data: { categoryId: this.selectedCategory.id }
+		});
+	}
+
+	openCategoryDialog() {
+		let dialogRef = this.dialog.open(CreateCategoryDialogComponent, {
+			width: '500px'
 		});
 	}
 

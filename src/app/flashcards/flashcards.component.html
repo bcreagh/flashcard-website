@@ -3,9 +3,10 @@
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-4">
-			<select class="form-control" [(ngModel)]="selectedCategory" (change)="onCategorySelected()" >
+			<select class="form-control category-dropdown" [(ngModel)]="selectedCategory" (change)="onCategorySelected()" >
 				<option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
 			</select>
+			<button class="btn" type="button" (click)="openCategoryDialog()" ><i class="fas fa-plus"></i></button>
 		</div>
 		<div class="col-md-4">
 		</div>
@@ -41,7 +42,7 @@
 				<button class="btn" type="button" (click)="getPreviousFlashcard()" >Previous</button>&nbsp;
 				<button class="btn" type="button" (click)="getRandomFlashcard()" >Random</button>&nbsp;
 				<button class="btn" type="button" (click)="getNextFlashcard()" >Next</button>&nbsp;
-				<button class="btn" type="button" (click)="openDialog()" ><i class="fas fa-plus"></i></button>
+				<button class="btn" type="button" (click)="openFlashcardDialog()" ><i class="fas fa-plus"></i></button>
 			</div>
 		</div>
 	</div>

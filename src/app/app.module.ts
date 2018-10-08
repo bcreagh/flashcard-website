@@ -12,13 +12,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FlashcardsComponent } from './flashcards/flashcards.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CreateFlashcardDialogComponent } from './flashcards/create-flashcard-dialog/create-flashcard-dialog.component';
+import { CreateCategoryDialogComponent } from './flashcards/create-category-dialog/create-category-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FlashcardsComponent,
-    CreateFlashcardDialogComponent
+    CreateFlashcardDialogComponent,
+    CreateCategoryDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { CreateFlashcardDialogComponent } from './flashcards/create-flashcard-di
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    CreateFlashcardDialogComponent
+    CreateFlashcardDialogComponent,
+    CreateCategoryDialogComponent
   ]
 })
 export class AppModule { }

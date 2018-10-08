@@ -25,7 +25,6 @@ export class CreateFlashcardDialogComponent implements OnInit {
   }
 
   close() {
-    console.log("asdfds");
     this.dialogRef.close();
   }
 

@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { Category } from './domain/category';
 import { IntegerResult } from './services/DTO/integer-result';
+import { StringResult } from './services/DTO/string-result';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class CategoryService {
 	
 	getNumberOfFlashcardsInCategory(categoryId: number): Observable<IntegerResult> {
 		return this.http.get<IntegerResult>("http://localhost:8080/Flashcards/category/count?id=" + categoryId);
+	}
+
+	createCategory(category: Category) {
+		return this.http.post<StringResult>("http://localhost:8080/Flashcards/category", JSON.stringify(category));
 	}
 }
